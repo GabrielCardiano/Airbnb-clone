@@ -1,4 +1,4 @@
-// Layout component is by default a server component
+// Layout component is by default a server side rendering component
 
 import './globals.css'
 import type { Metadata } from 'next'
@@ -23,7 +23,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const currentUser =  await getCurrentUser();
+  const currentUser =  await getCurrentUser();  
 
   return (
     <html lang="en">

@@ -7,17 +7,19 @@ import Avatar from '../Avatar'
 import MenuItem from './MenuItem';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
-import { User } from '@prisma/client';
+
 import { signOut } from 'next-auth/react';
 
+import { SafeUser } from '@/app/types';
+
 interface UserMenuProps {
-  currentUser?: User | null,
+  currentUser?: SafeUser | null,
 }
 
-function UserMenu({ currentUser }: UserMenuProps): ReactElement {
+function UserMenu({ currentUser }: UserMenuProps): ReactElement {  
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);  
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value)
@@ -61,7 +63,7 @@ function UserMenu({ currentUser }: UserMenuProps): ReactElement {
           <AiOutlineMenu />
         </div>
         <div className='hidden md:block'>
-          <Avatar />
+          <Avatar src={currentUser?.image} />
         </div>
       </div>
 

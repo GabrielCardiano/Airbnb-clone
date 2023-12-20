@@ -1,15 +1,17 @@
 'use client'
-import { User } from '@prisma/client'
+
 import Container from '../Container'
 import Logo from './Logo'
 import Search from './Search'
 import UserMenu from './UserMenu'
 import { ReactElement } from 'react'
 
+import { SafeUser } from '@/app/types'
+
 //  npx prisma db push synchronize the prisma schema with de database schema (migrate schema to db)
 
 interface NavBarProps {
-  currentUser?: User | null, // User defined in prisma schema (after run the migration -> npx prisma db push)
+  currentUser?: SafeUser | null, // User defined in prisma schema (after run the migration -> npx prisma db push)
 }
 
 function Navbar({ currentUser }: NavBarProps): ReactElement {
