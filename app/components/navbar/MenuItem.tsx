@@ -16,7 +16,8 @@ function MenuItem({ onClick, label }: MenuItemProps): ReactElement {
       py-3
       hover:bg-neutral-100
       transition
-      font-semibold"
+      font-semibold
+      "
     >
       {label}
     </div>

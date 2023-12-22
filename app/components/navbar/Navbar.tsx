@@ -7,6 +7,7 @@ import UserMenu from './UserMenu'
 import { ReactElement } from 'react'
 
 import { SafeUser } from '@/app/types'
+import Categories from './Categories'
 
 //  npx prisma db push synchronize the prisma schema with de database schema (migrate schema to db)
 
@@ -36,8 +37,8 @@ function Navbar({ currentUser }: NavBarProps): ReactElement {
             <UserMenu currentUser={currentUser} />
           </div>
         </Container>
-
       </div>
+        <Categories />
     </div>
   )
 }

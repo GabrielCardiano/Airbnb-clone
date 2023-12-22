@@ -32,6 +32,8 @@ function Search() {
           className="
         hidden
         sm:block
+        text-sm
+        font-semibold
         px-6
         border-x-[1px]
         flex-1
@@ -43,7 +45,7 @@ function Search() {
         <div
           className="
         text-sm
-        px-6
+        pl-6
         pr-2
         text-gray-600
         flex
