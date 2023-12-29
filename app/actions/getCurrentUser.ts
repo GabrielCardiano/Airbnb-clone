@@ -17,7 +17,7 @@ export default async function getCurrentUser() {
     });
     if (!currentUser) { return null; }
 
-    // Date objects can't be passed to client component from server component. Need treatment.
+    // Date objects can't be passed to client component from server component. Need toISoString() method to transform Data ype into a string.
     return {
       ...currentUser,
       createdAt: currentUser.createdAt.toISOString(),
