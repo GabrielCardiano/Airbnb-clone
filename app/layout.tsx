@@ -1,4 +1,7 @@
-// Layout component is by default a server side rendering component
+/* 
+* Layout component is by default a server side rendering component
+* We can pull database info directly whithout an API call --> getCurrentUser(); 
+*/
 
 import './globals.css'
 import type { Metadata } from 'next'
@@ -26,7 +29,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const currentUser =  await getCurrentUser();  
+  const currentUser =  await getCurrentUser(); // get database info directly without an API call
 
   return (
     <html lang="en">
@@ -38,7 +41,9 @@ export default async function RootLayout({
           <RegisterModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
+        <div className='pb-20 pt-28'>
         {children}
+        </div>
       </body>
     </html>
   )
