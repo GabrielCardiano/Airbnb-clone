@@ -14,7 +14,7 @@ import ImageUpload from "../inputs/ImageUpload";
 import CategoryInput from "../inputs/CategoryInput";
 import Input from "../inputs/Input";
 import axios from "axios";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 enum STEPS {
@@ -32,7 +32,7 @@ function RentModal() {
 
   const [step, setStep] = useState(STEPS.CATEGORY);
 
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -82,21 +82,21 @@ function RentModal() {
     setStep((value) => value + 1);
   };
 
-  const onSubmit: SubmitHandler<FieldValues > = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.PRICE) {
       return onNext();
     }
     setIsLoading(true);
     axios.post('/api/listings', data)
-    .then(() => {
-      toast.success('Listing Created!'); // create enpoint later
-      router.refresh();
-      reset();
-      setStep(STEPS.CATEGORY);
-      rentModal.onClose();
-    })
-    .catch(() => toast.error('Somethin went wrong!'))
-    .finally(() => setIsLoading(false));
+      .then(() => {
+        toast.success('Listing Created!'); // create enpoint later
+        router.refresh();
+        reset();
+        setStep(STEPS.CATEGORY);
+        rentModal.onClose();
+      })
+      .catch(() => toast.error('Somethin went wrong!'))
+      .finally(() => setIsLoading(false));
   };
 
   const actionLabel = useMemo(() => {
