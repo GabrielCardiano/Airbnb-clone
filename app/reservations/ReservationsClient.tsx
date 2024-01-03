@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-///* My Trips is for the client who wants to book a reservation  */
+//* My Reservations is for the owner of the properties who is renting for a client*/
 
 import axios from "axios";
-
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { ReactElement, useCallback, useState } from "react";
 
@@ -11,15 +11,16 @@ import Container from "../components/Container";
 import Heading from "../components/Heading";
 import ListingCard from "../components/listings/ListingCard";
 
-import { SafeReservation, SafeUser } from "../types";
-import { toast } from "react-hot-toast";
 
-interface TripsClientProps {
+import { SafeReservation, SafeUser } from "../types";
+
+interface ReservationClientProps {
   reservations: SafeReservation[],
   currentUser?: SafeUser | null,
 }
 
-function TripsClient({ reservations, currentUser }: TripsClientProps): ReactElement {
+
+function ReservationsClient({ reservations, currentUser }: ReservationClientProps): ReactElement {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState('');
 
@@ -31,18 +32,16 @@ function TripsClient({ reservations, currentUser }: TripsClientProps): ReactElem
         toast.success('Reservation cancelled');
         router.refresh();
       })
-      .catch((error) => toast.error(error?.response?.data?.error))
+      .catch((error) => toast.error('Something went wrong!'))
       .finally(() => setDeletingId(''));
   }, [router]);
-
 
   return (
     <Container>
       <Heading
-        title="Trips"
-        subtitle="Where have you been and where are you going?"
+        title="Reservations"
+        subtitle="Bookings on your properties"
       />
-
       <div className="
         mt-10
         grid
@@ -71,4 +70,4 @@ function TripsClient({ reservations, currentUser }: TripsClientProps): ReactElem
   )
 }
 
-export default TripsClient
+export default ReservationsClient;      
