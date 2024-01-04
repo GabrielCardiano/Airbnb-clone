@@ -15,24 +15,11 @@ export default async function getReservations(params: IParams) {
     if (userId) { query.userId = userId }
     if (authorId) { query.listing = { userId: authorId } }
 
-    // switch (query) {
-    //   case listingId: 
-    //     query.listingId = listingId;
-    //     break;
-    //   case userId:
-    //     query.userId = userId;
-    //     break;
-    //   case authorId:
-    //     query.listing = { userId: authorId };
-    //   default:
-    //     break;
-    // }
-
     const reservations = await prisma.reservation.findMany({
       where: query,
       include: { listing: true },
       orderBy: { createdAt: 'desc' },
-    })
+    });
 
     const safeReservations = reservations.map((reservation) => ({
       ...reservation,
